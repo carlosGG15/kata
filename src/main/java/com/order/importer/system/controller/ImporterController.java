@@ -18,11 +18,6 @@ public class ImporterController {
         this.importService = importService;
     }
 
-    @GetMapping
-    public void importOrders() {
-        //importService.importOrders(new Imports());
-    }
-
     @GetMapping("/{id}")
     public ImportDto getImport(@PathVariable final Integer id) throws Exception {
         return importService.getImport(id);
