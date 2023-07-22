@@ -1,20 +1,34 @@
 package com.order.importer.system.entity;
 
+import com.order.importer.system.model.OrderView;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import lombok.Data;
+
+import static com.order.importer.system.constants.OrderQueryConstants.*;
 
 @Data
 @Entity
 @Table(name = "orders")
+@SqlResultSetMapping(name = ORDER_VIEW, classes = @ConstructorResult(targetClass = OrderView.class,
+        columns = {
+                @ColumnResult(name = "orderId", type = String.class),
+                @ColumnResult(name = "orderPriority", type = String.class),
+                @ColumnResult(name = "orderDate", type = LocalDate.class),
+                @ColumnResult(name = "region", type = String.class),
+                @ColumnResult(name = "country", type = String.class),
+                @ColumnResult(name = "orderType", type = String.class),
+                @ColumnResult(name = "salesChannel", type = String.class),
+                @ColumnResult(name = "shipDate", type = LocalDate.class),
+                @ColumnResult(name = "unitsSold", type = BigDecimal.class),
+                @ColumnResult(name = "unitPrice", type = BigDecimal.class),
+                @ColumnResult(name = "totalRevenue", type = BigDecimal.class),
+                @ColumnResult(name = "totalCost", type = BigDecimal.class),
+                @ColumnResult(name = "totalProfit", type = BigDecimal.class)
+        }))
+@NamedNativeQuery(name = GET_ORDERS, query = GET_ORDERS_QUERY, resultSetMapping = ORDER_VIEW)
 public class Order {
 
     @Id
@@ -62,5 +76,7 @@ public class Order {
 
     @Column(name = "ship_date")
     private LocalDate shipDate;
+    @Column(name = "import_id")
+    private Integer importId;
 
 }

@@ -2,9 +2,12 @@ package com.order.importer.system.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class OrderDto {
 
     @JsonProperty("uuid")

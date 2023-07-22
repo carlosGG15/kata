@@ -30,12 +30,19 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: spring_boot_version
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombok_version
-    compileOnly group: 'com.opencsv', name: 'opencsv', version: '4.1'
+    compileOnly group: 'org.slf4j', name: 'slf4j-log4j12', version: slf4j_version
+    implementation 'com.opencsv:opencsv:5.7.1'
+    compileOnly 'commons-beanutils:commons-beanutils:1.9.4'
+    compileOnly group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    compileOnly 'org.apache.commons:commons-lang3:3.12.0'
+    compileOnly group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
+
 
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version
     annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstruct_version
 
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombok_version
+    testImplementation group: 'org.springframework.boot' ,name : 'spring-boot-starter-test', version: spring_boot_version
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

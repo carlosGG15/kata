@@ -3,6 +3,8 @@ package com.order.importer.system.util;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.order.importer.system.exception.DateFormatException;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -21,8 +23,10 @@ public class DateUtils {
             final int year = Integer.parseInt(matcher.group("year"));
 
             return LocalDate.of(year, month, day);
+        } else {
+            throw new DateFormatException("Wrong date format exception ");
         }
-        return LocalDate.now();
+
     }
 
 }
