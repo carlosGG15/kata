@@ -1,11 +1,11 @@
 package com.order.importer.system.controller;
 
 import com.order.importer.system.constants.KataConstants;
+import com.order.importer.system.entity.Imports;
+import com.order.importer.system.model.ImportDto;
 import com.order.importer.system.service.ImportService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -20,7 +20,22 @@ public class ImporterController {
 
     @GetMapping
     public void importOrders() {
-        importService.importOrders();
+        //importService.importOrders(new Imports());
+    }
+
+    @GetMapping("/{id}")
+    public ImportDto getImport(@PathVariable final Integer id) throws Exception {
+        return importService.getImport(id);
+    }
+
+    @PostMapping
+    public ImportDto createImport(@RequestBody ImportDto importDto) {
+        return importService.createImport(importDto);
+    }
+
+    @GetMapping("{id}/csv")
+    public void downloadCSV(@RequestParam final Integer id) {
+        // TODO: Not implemented
     }
 
 }
